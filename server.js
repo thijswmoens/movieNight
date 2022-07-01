@@ -8,6 +8,7 @@ if(process.env.NODE_ENV !== 'production') {
 const express = require("express")
 const app = express()
 const expressLayouts = require("express-ejs-layouts")
+const bodyParser = require('body-parser')
 
 // Load Routers
 const indexRouter = require('./routes/index')
@@ -21,9 +22,7 @@ app.set('layout', 'layouts/layout')
 // Set use
 app.use(expressLayouts)
 app.use(express.static('public'))
-app.use('/', indexRouter)
-app.use('/genres', genreRouter)
-
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
 // Setup MongoDB database
 const mongoose = require('mongoose')
@@ -36,3 +35,6 @@ db.once('open', () => console.log('Connected to mongoose'))
 
 // Listen
 app.listen(process.env.PORT || 3000)
+
+app.use('/', indexRouter)
+app.use('/genres', genreRouter)

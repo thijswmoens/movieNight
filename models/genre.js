@@ -6,3 +6,5 @@ const genreSchema = new mongoose.Schema({
         required: true
     }
 })
+
+module.exports = mongoose.model('Genre', genreSchema)
