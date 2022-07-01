@@ -4,7 +4,7 @@ const router = express.Router()
 const Genre = require('../models/genre')
 
 // All Genres Route
-router.get('/', async (req, res ) => {
+router.get('/', (req, res ) => {
     res.render('genres/index')
 })
 
@@ -16,13 +16,13 @@ router.get('/new', (req, res) => {
 })
 
 // Create new Genre
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const genre = new Genre({
         name: req.body.name
     })
     try {
         const newGenre = await genre.save()
-        res.redirect(`genres/${newGenre.id}`)
+        // res.redirect(`genres/${newGenre.id}`)
         res.redirect(`genres`)
     } catch {
         res.render('genres/new', {
