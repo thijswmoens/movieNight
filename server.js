@@ -1,9 +1,8 @@
-require('dotenv').config();
-
 //Check if we are in production envirment
-// if(process.env.NODE_ENV !== 'production') {
-//     require('dotenv').parse()
-// }
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+    // require('dotenv').parse()
+}
 
 // Import
 const express = require("express")
