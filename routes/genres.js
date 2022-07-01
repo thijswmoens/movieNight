@@ -4,8 +4,20 @@ const router = express.Router()
 const Genre = require('../models/genre')
 
 // All Genres Route
-router.get('/', (req, res ) => {
-    res.render('genres/index')
+router.get('/', async (req, res ) => {
+    let searchOptions = {}
+    if (req.query.name != null && req.query.name !== '') {
+        searchOptions.name = new RegExp(req.query.name, 'i')
+    }
+    try {
+        const genres = await Genre.find(searchOptions)
+        res.render('genres/index', { 
+            genres: genres, 
+            searchOptions: req.query 
+        })
+    } catch {
+        res.redirect('/')
+    }
 })
 
 // New Genre Route
