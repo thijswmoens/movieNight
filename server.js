@@ -8,7 +8,10 @@ if(process.env.NODE_ENV !== 'production') {
 const express = require("express")
 const app = express()
 const expressLayouts = require("express-ejs-layouts")
+
+// Load Routers
 const indexRouter = require('./routes/index')
+const genreRouter = require('./routes/genres')
 
 // Set app config
 app.set('view engine', 'ejs')
@@ -19,6 +22,8 @@ app.set('layout', 'layouts/layout')
 app.use(expressLayouts)
 app.use(express.static('public'))
 app.use('/', indexRouter)
+app.use('/genres', genreRouter)
+
 
 // Setup MongoDB database
 const mongoose = require('mongoose')
