@@ -12,6 +12,8 @@ const bodyParser = require('body-parser')
 // Load Routers
 const indexRouter = require('./routes/index')
 const genreRouter = require('./routes/genres')
+const movieRouter = require('./routes/movies')
+
 
 // Set app config
 app.set('view engine', 'ejs')
@@ -37,3 +39,4 @@ app.listen(process.env.PORT || 3000)
 
 app.use('/', indexRouter)
 app.use('/genres', genreRouter)
+app.use('/movies', movieRouter)
