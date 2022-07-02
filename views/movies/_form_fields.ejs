@@ -1,2 +1,38 @@
-<label>Name</label>
-<input type="text" name="name" value="<%= movie.name %>">
+<div>
+    <label>Title</label>
+    <input type="text" name="title" value="<%= movie.title %>">
+</div>
+
+<div>
+    <label>Genre</label>
+    <select name="genre">
+    <% genres.forEach(genre => { %> 
+        <% if(genre.id === movie.genre) { %> 
+            <option selected label="<%= genre.name %>" value="<%= genre.id %>"></option>
+        <% } else { %> 
+            <option label="<%= genre.name %>" value="<%= genre.id %>"></option>
+        <% } %> 
+    <% }) %> 
+    </select>
+</div>
+
+<div>
+    <label>Release Date</label>
+    <input type="date" name="releaseDate" 
+           value="<%= movie.releaseDate == null ? '' : movie.releaseDate.toISOString().split('T')[0] %>">
+</div>
+
+<div>
+    <label>Duration</label>
+    <input type="number" name="duration" min="1" value="<%= movie.duration %>">
+</div>
+
+<div>
+    <label>Cover</label>
+    <input type="file" name="cover">
+</div>
+
+<div>
+    <label>Description</label>
+    <textarea name="description"><%= movie.description %></textarea>
+</div>
